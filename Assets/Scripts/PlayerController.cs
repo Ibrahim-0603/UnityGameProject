@@ -2,7 +2,19 @@ using UnityEngine;
 
 public class PlayerController : GameEntity , IDamagable
 {
-    // Update is called once per frame
+    private HealthBar healthBar;
+    void Start()
+    {
+        healthBar = GetComponentInChildren<HealthBar>();
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+        }
+        else
+        {
+            Debug.LogError("HealthBar component not found in children of " + gameObject.name);
+        }
+    }
     void Update()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -16,5 +28,14 @@ public class PlayerController : GameEntity , IDamagable
             TakeDamage(10);
         }
     }
-    
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        // Update the health bar if it exists
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+    }
 }
