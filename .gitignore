@@ -1,0 +1,27 @@
+# Ignore Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+
+# User-specific files
+UserSettings/
+.vs/
+*.user
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.userprefs
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Visual Studio Code settings
+.vscode/
+
+# Ignore crash reports
+sysinfo.txt
