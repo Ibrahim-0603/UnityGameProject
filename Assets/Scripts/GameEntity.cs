@@ -6,7 +6,7 @@ public class GameEntity : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public string entityName;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 50f;
     
     protected Rigidbody2D rb;
 
