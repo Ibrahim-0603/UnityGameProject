@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class PlayerController : GameEntity , IDamagable
 {
+    public GameObject laserPrefab; // Reference to the laser prefab
+    public Transform firePoint; // Point from which the laser will be fired
+    public float laserCooldown = 0.25f; // Cooldown time between laser shots
+    private float lastFireTime; // Time when the last laser was fired
+
     private HealthBar healthBar;
     void Start()
     {
@@ -22,10 +27,10 @@ public class PlayerController : GameEntity , IDamagable
 
         Vector2 direction = new Vector2(moveX, moveY).normalized;
         Move(direction);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && Time.time >= lastFireTime + laserCooldown)
         {
-            // Example of taking damage when the space key is pressed
-            TakeDamage(10);
+            FireLaser();
+            lastFireTime = Time.time; // Update the last fire time
         }
     }
     public override void TakeDamage(int damage)
@@ -37,5 +42,9 @@ public class PlayerController : GameEntity , IDamagable
         {
             healthBar.SetHealth(currentHealth);
         }
+    }
+    void FireLaser()
+    {
+        Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
     }
 }

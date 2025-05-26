@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Laser
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Projectile
   - 
   - 
   - 
@@ -42,13 +44,19 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 4061556839
+    uniqueID: 293033041
     locked: 0
-  - name: Characters
-    uniqueID: 3764667353
+  - name: Player
+    uniqueID: 364838375
+    locked: 0
+  - name: Enemy
+    uniqueID: 2796122019
+    locked: 0
+  - name: Projectiles
+    uniqueID: 277280951
     locked: 0
   - name: Status
-    uniqueID: 1615956951
+    uniqueID: 908302571
     locked: 0
   m_RenderingLayers:
   - Default
