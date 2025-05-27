@@ -4,6 +4,8 @@ public class Enemy : GameEntity, IDamagable
 {
     private HealthBar healthBar;
     private Transform player;
+    public float laserCooldown = 2f; // Cooldown time between laser shots
+    private float timer;
     void Start()
     {
         // Initialize the health bar
@@ -16,9 +18,9 @@ public class Enemy : GameEntity, IDamagable
         {
             Debug.LogError("HealthBar component not found in children of " + gameObject.name);
         }
-    
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if(playerObject != null)
+        if (playerObject != null)
         {
             player = playerObject.transform;
         }
@@ -29,26 +31,39 @@ public class Enemy : GameEntity, IDamagable
     }
     void Update()
     {
-        if (player != null)
+        //if (player != null)
+        //{
+        //    Vector2 direction1 = (player.position - transform.position).normalized;
+        //    Move(direction1);
+        //}
+        timer += Time.deltaTime;
+        if (timer >= laserCooldown)
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            Move(direction);
+            FireLaser();
+            timer = 0f; // Reset the timer after firing
         }
     }
 
-    void OnMouseDown()
-    {
-               // Example of taking damage when the enemy is clicked
-        TakeDamage(10);
-    }
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        
+
         // Update the health bar if it exists
         if (healthBar != null)
         {
             healthBar.SetHealth(currentHealth);
         }
     }
+    public override void FireLaser()
+    { 
+        base.FireLaser(); // Call the base class method to handle laser firing
+
+        Laser laserScript = GetComponent<Laser>();
+        if (laserScript != null)
+        {
+            laserScript.direction = Vector2.left; // Set the direction of the laser to left
+            laserScript.targetTag = "Player"; // Set the target tag for the laser
+        }
+    }
+    
 }

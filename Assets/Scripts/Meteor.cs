@@ -5,11 +5,13 @@ public class Meteor : MonoBehaviour
     public int damage = 10; // Damage dealt by the meteor
     void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamagable target = collision.GetComponent<IDamagable>();
-        if (target != null)
-        {
-            target.TakeDamage(damage); // Deal damage to the target
-            Destroy(gameObject); // Destroy the meteor after it hits something
+        if (collision.CompareTag("Player")){
+            IDamagable target = collision.GetComponent<IDamagable>();
+            if (target != null)
+            {
+                target.TakeDamage(damage); // Deal damage to the target
+                Destroy(gameObject); // Destroy the meteor after it hits something
+            }
         }
     }
     public float movespeed = 10f; // Speed of the meteor's movement

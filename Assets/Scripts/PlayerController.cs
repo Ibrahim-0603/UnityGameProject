@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerController : GameEntity , IDamagable
 {
-    public GameObject laserPrefab; // Reference to the laser prefab
-    public Transform firePoint; // Point from which the laser will be fired
     public float laserCooldown = 0.25f; // Cooldown time between laser shots
     private float lastFireTime; // Time when the last laser was fired
 
@@ -43,8 +41,15 @@ public class PlayerController : GameEntity , IDamagable
             healthBar.SetHealth(currentHealth);
         }
     }
-    void FireLaser()
+    public override void FireLaser()
     {
-        Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
+        base.FireLaser(); // Call the base class method to handle laser firing
+
+        Laser laserScript = GetComponent<Laser>();
+        if (laserScript != null)
+        {
+            laserScript.direction = Vector2.right; // Set the direction of the laser to left
+            laserScript.targetTag = "Enemy"; // Set the target tag for the laser
+        }
     }
 }

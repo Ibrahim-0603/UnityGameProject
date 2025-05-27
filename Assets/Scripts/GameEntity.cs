@@ -7,7 +7,9 @@ public class GameEntity : MonoBehaviour
     public int currentHealth;
     public string entityName;
     public float moveSpeed = 50f;
-    
+    public GameObject laserPrefab;// Reference to the laser prefab
+    public Transform firePoint;// Point from which the laser will be fired
+
     protected Rigidbody2D rb;
 
     // Called once when the GameObject is created
@@ -46,5 +48,9 @@ public class GameEntity : MonoBehaviour
     public virtual void PrintName()
     {
         Debug.Log("Entity name: " + entityName);
+    }
+    public virtual void FireLaser()
+    {
+        GameObject laser = Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
     }
 }
