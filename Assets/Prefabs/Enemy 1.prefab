@@ -291,7 +291,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   entityName: 
-  moveSpeed: 50
+  moveSpeed: 20
   laserPrefab: {fileID: 6154151663081369444, guid: 0e29800f44e377e47b3923561708f806, type: 3}
   firePoint: {fileID: 3279625837874934682}
   laserCooldown: 2

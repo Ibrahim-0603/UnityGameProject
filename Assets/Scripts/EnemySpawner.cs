@@ -18,6 +18,6 @@ public class EnemySpawner : MonoBehaviour
         float yPosition = Random.Range(-spawnRangeY, spawnRangeY);
         Vector2 spawnPosition = new Vector2(spawnX, yPosition);
         // Instantiate the meteor at the calculated position
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(enemyPrefab, spawnPosition, enemyPrefab.transform.rotation);
     }
 }

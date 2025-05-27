@@ -31,11 +31,11 @@ public class Enemy : GameEntity, IDamagable
     }
     void Update()
     {
-        //if (player != null)
-        //{
-        //    Vector2 direction1 = (player.position - transform.position).normalized;
-        //    Move(direction1);
-        //}
+        if (player != null)
+        {
+            Vector2 direction1 = (player.position - transform.position).normalized;
+            Move(direction1);
+        }
         timer += Time.deltaTime;
         if (timer >= laserCooldown)
         {
@@ -47,7 +47,14 @@ public class Enemy : GameEntity, IDamagable
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
+        if (currentHealth <= 0)
+        {
+            GameManager gm = FindObjectOfType<GameManager>(); // Find the GameManager in the scene
+            if (gm != null)
+            {
+                gm.EnemiesDefeated();
+            }
+        }
         // Update the health bar if it exists
         if (healthBar != null)
         {
