@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : GameEntity , IDamagable
 {
     public float laserCooldown = 0.25f; // Cooldown time between laser shots
@@ -52,4 +52,10 @@ public class PlayerController : GameEntity , IDamagable
             laserScript.targetTag = "Enemy"; // Set the target tag for the laser
         }
     }
+    public override void die()
+    {
+        base.die(); // Call the base class die method
+        SceneManager.LoadScene("GameOverScene"); // Load the Game Over scene
+    }
+    
 }

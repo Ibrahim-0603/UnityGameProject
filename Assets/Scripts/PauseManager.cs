@@ -34,6 +34,7 @@ public class PauseManager : MonoBehaviour
     }
     public void LoadMainMenu()
     {
+        Time.timeScale = 1f; // Ensure the game time is resumed before loading a new scene
         SceneManager.LoadScene("MainMenu"); // Load the main menu scene
     }
 }
