@@ -8,6 +8,9 @@ public class EndScreenNavigation : MonoBehaviour
     }
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("GameScene"); // Load the game scene
+        if (SceneManager.GetActiveScene().name != "GameScene")
+        {
+            SceneManager.LoadScene("GameScene");
+        }
     }
 }

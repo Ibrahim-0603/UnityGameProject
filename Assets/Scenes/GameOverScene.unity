@@ -744,7 +744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652461671}
-  - component: {fileID: 652461670}
+  - component: {fileID: 652461672}
   m_Layer: 0
   m_Name: Point Manager
   m_TagString: Untagged
@@ -752,24 +752,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &652461670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652461669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675487294042a904e9bf14e1feb30432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemiesToDefeat: 0
-  enemiesDefeated: 0
-  score: 0
-  scoreText: {fileID: 590788040}
-  finalScoreText: {fileID: 590788040}
-  highScoreText: {fileID: 249677965}
 --- !u!4 &652461671
 Transform:
   m_ObjectHideFlags: 0
@@ -785,6 +767,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &652461672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652461669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90c7b494e9d2424d96268f8e74e4a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreText: {fileID: 0}
+  finalScoreText: {fileID: 590788040}
+  highScoreText: {fileID: 249677965}
 --- !u!1 &778455142
 GameObject:
   m_ObjectHideFlags: 0

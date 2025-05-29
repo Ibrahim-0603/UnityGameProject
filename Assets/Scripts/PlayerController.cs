@@ -55,6 +55,8 @@ public class PlayerController : GameEntity , IDamagable
     public override void die()
     {
         base.die(); // Call the base class die method
+        PlayerPrefs.SetInt("FinalScore", GameManager.instance.enemiesDefeated);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("GameOverScene"); // Load the Game Over scene
     }
     
