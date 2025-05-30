@@ -123,9 +123,9 @@ GameObject:
   - component: {fileID: 2228577372245704139}
   - component: {fileID: 7047599323550970602}
   - component: {fileID: 4821961796154176199}
-  - component: {fileID: 4416010998967597434}
+  - component: {fileID: -6488435898417319732}
   m_Layer: 7
-  m_Name: Enemy 1
+  m_Name: Tank Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,8 +140,8 @@ Transform:
   m_GameObject: {fileID: 3022338214791728218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 58.7, y: -0.5, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 57.06, y: -0.55, z: 0}
+  m_LocalScale: {x: 11, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2131378126786415276}
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: 364838375
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 0.16748914, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -267,7 +267,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.21133333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4416010998967597434
+--- !u!114 &-6488435898417319732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,13 +285,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3022338214791728218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd08b53a29c6bb44a46ad8467a55aa7, type: 3}
+  m_Script: {fileID: 11500000, guid: e9c6238eed8f5d94290a04a466c249e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
   entityName: 
-  moveSpeed: 20
+  moveSpeed: 5
   laserPrefab: {fileID: 6154151663081369444, guid: 0e29800f44e377e47b3923561708f806, type: 3}
   firePoint: {fileID: 3279625837874934682}
   laserCooldown: 2
@@ -320,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 4960587876929122512}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.074, z: -0.16752015}
+  m_LocalPosition: {x: 0, y: 0.962, z: -0.16752015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -549,7 +549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.75, y: 0.14}
+  m_AnchoredPosition: {x: 0.75, y: 0}
   m_SizeDelta: {x: 1, y: 0.11305}
   m_Pivot: {x: 0.5, y: 0.50000024}
 --- !u!223 &2724777198219858497

@@ -1,9 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class PlayerController : GameEntity , IDamagable
 {
     public float laserCooldown = 0.25f; // Cooldown time between laser shots
     private float lastFireTime; // Time when the last laser was fired
+    //Ability flags
+    private bool isSpeedBoosted = false;
+    private bool isDamageBoosted = false;
+    //Ability Settings
+    public int healthBoostAmount = 20; // Amount of health to restore when picking up a health boost
+    public int maxBoostedHealth = 200; //Max amount of health to have boosted
 
     private HealthBar healthBar;
     void Start()
@@ -60,4 +67,49 @@ public class PlayerController : GameEntity , IDamagable
         SceneManager.LoadScene("GameOverScene"); // Load the Game Over scene
     }
     
+    public void ApplyHealthBoost()
+    {
+        if (currentHealth <= maxBoostedHealth)
+        {
+            currentHealth += healthBoostAmount;
+            if (currentHealth > maxBoostedHealth)
+            {
+                currentHealth = maxBoostedHealth; // Ensure health does not exceed max boosted health
+            }
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(currentHealth); // Update the health bar
+            }
+        }
+    }
+    public void ApplySpeedBoost(float speedMultiplier, float boostDuration)
+    {
+        if (!isSpeedBoosted)
+        {
+            StartCoroutine(SpeedBoostCoroutine(speedMultiplier, boostDuration));
+        }
+    }
+    private IEnumerator SpeedBoostCoroutine(float speedMultiplier,float boostDuration)
+    {
+        isSpeedBoosted = true;
+        moveSpeed *= speedMultiplier; // Increase move speed
+        yield return new WaitForSeconds(boostDuration); // Wait for the duration
+        moveSpeed /= speedMultiplier; // Reset move speed
+        isSpeedBoosted = false; // Reset the speed boost flag
+    }
+    public void ApplyDamageBoost(float damageMultiplier,float boostDuration)
+    {
+        if (!isDamageBoosted)
+        {
+            StartCoroutine(DamageBoostCoroutine(damageMultiplier,boostDuration));
+        }
+    }
+    private IEnumerator DamageBoostCoroutine(float damgageMultiplier, float boostDuration)
+    {
+        isDamageBoosted = true;
+        laserPrefab.GetComponent<Laser>().damage *= (int)damgageMultiplier; // Increase laser damage
+        yield return new WaitForSeconds(boostDuration); // Wait for the duration
+        laserPrefab.GetComponent<Laser>().damage /= (int)damgageMultiplier; // Reset laser damage
+        isDamageBoosted = false; // Reset the damage boost flag
+    }
 }

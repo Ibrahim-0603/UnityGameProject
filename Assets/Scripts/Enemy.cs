@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Enemy : GameEntity, IDamagable
 {
-    private HealthBar healthBar;
+    protected HealthBar healthBar;
     private Transform player;
     public float laserCooldown = 2f; // Cooldown time between laser shots
     private float timer;
     private float stopXposition; // Position where the enemy stops moving
     private bool hasStopped = false;
 
-    void Start()
+    protected virtual void Start()
     {
         stopXposition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0, 0)).x; 
         HealthDifficulty(); // Set health based on difficulty level
@@ -85,19 +85,24 @@ public class Enemy : GameEntity, IDamagable
             switch (DifficultyManager.Instance.CurrentDifficulty)
             {
                 case DifficultyManager.DifficultyLevel.Easy:
-                    maxHealth = 100; // Easy difficulty health
+                    maxHealth = maxHealth; // Easy difficulty health
+                    laserCooldown = laserCooldown; // Easy difficulty laser cooldown
                     break;
                 case DifficultyManager.DifficultyLevel.Medium:
-                    maxHealth = 200; // Medium difficulty health
+                    maxHealth *= 2; // Medium difficulty health
+                    laserCooldown /= 1.5f;
                     break;
                 case DifficultyManager.DifficultyLevel.Hard:
-                    maxHealth = 300; // Hard difficulty health
+                    maxHealth *= 3; // Hard difficulty health
+                    laserCooldown /= 2f; // Hard difficulty laser cooldown
                     break;
                 case DifficultyManager.DifficultyLevel.Insane:
-                    maxHealth = 500; // Insane difficulty health
+                    maxHealth *= 4; // Insane difficulty health
+                    laserCooldown /= 3f; // Insane difficulty laser cooldown
                     break;
                 case DifficultyManager.DifficultyLevel.Endless:
-                    maxHealth = 200; // Endless mode health
+                    maxHealth *= 2; // Endless mode health
+                    laserCooldown /= 1.5f; // Endless mode laser cooldown
                     break;
             }
             currentHealth = maxHealth; // Set current health to max health

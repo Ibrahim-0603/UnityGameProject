@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Prefab for the enemy to spawn
+    public GameObject basicEnemyPrefab; // Prefab for the enemy to spawn
+    public GameObject fastEnemyPrefab;
+    public GameObject tankEnemyPrefab;
+
     public float spawnInterval = 10f; // Time interval between spawns
     public float spawnRangeY = 50f; // Range for random Y position
     public float spawnX = 100f; // Fixed X position for spawning
@@ -19,7 +22,27 @@ public class EnemySpawner : MonoBehaviour
         float yPosition = Random.Range(-spawnRangeY, spawnRangeY);
         Vector2 spawnPosition = new Vector2(spawnX, yPosition);
         // Instantiate the meteor at the calculated position
-        Instantiate(enemyPrefab, spawnPosition, enemyPrefab.transform.rotation);
+        int randomIndex = Random.Range(0, 3); // Randomly choose an enemy type
+        GameObject enemyToSpawn = null;
+        switch(randomIndex)
+        {
+            case 0:
+                enemyToSpawn = basicEnemyPrefab; // Basic enemy
+                break;
+            case 1:
+                enemyToSpawn = fastEnemyPrefab; // Fast enemy
+                break;
+            case 2:
+                enemyToSpawn = tankEnemyPrefab; // Tank enemy
+                break;
+        }
+        if (enemyToSpawn == null)
+        {
+            Debug.LogError("No enemy prefab assigned for spawning!");
+            return;
+        }
+
+        Instantiate(enemyToSpawn, spawnPosition, enemyToSpawn.transform.rotation);
     }
     void SpawnRateDifficulty()
     {

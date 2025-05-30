@@ -1137,6 +1137,7 @@ GameObject:
   - component: {fileID: 1202285411}
   - component: {fileID: 1202285412}
   - component: {fileID: 1202285413}
+  - component: {fileID: 1202285414}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1187,7 +1188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33733ad21e92ba94e96faf390e21688a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3022338214791728218, guid: 35db46d56be8df84dbc7049d267bd261, type: 3}
+  basicEnemyPrefab: {fileID: 3022338214791728218, guid: 35db46d56be8df84dbc7049d267bd261, type: 3}
+  fastEnemyPrefab: {fileID: 3022338214791728218, guid: c7f7837574f66df4abd57229e9527239, type: 3}
+  tankEnemyPrefab: {fileID: 3022338214791728218, guid: 55a4f9c7de54e3d4387d3d3afb57eeab, type: 3}
   spawnInterval: 8
   spawnRangeY: 50
   spawnX: 100
@@ -1206,6 +1209,24 @@ MonoBehaviour:
   EnemiesToDefeat: 0
   enemiesDefeated: 0
   pointManager: {fileID: 217482170}
+--- !u!114 &1202285414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202285408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a38de54879239640824d7c034b86aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealtBoostPrefab: {fileID: 5768500358214339481, guid: c1dfec6ba903f17498b8d404cdf35d23, type: 3}
+  SpeedBoostPrefab: {fileID: 5768500358214339481, guid: 32376f201fcfb3049b4aa6ce876b410e, type: 3}
+  DamageBoostPrefab: {fileID: 5768500358214339481, guid: 21200826a84060c458d222f176c5ac40, type: 3}
+  spawnInterval: 4
+  spawnRangeX: 100
+  spawnY: 50
 --- !u!1 &1263617842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2089,8 @@ MonoBehaviour:
   laserPrefab: {fileID: 1626334278491430787, guid: 3dfc33273037d7b4796bca94fb49c79a, type: 3}
   firePoint: {fileID: 1263617843}
   laserCooldown: 0.25
+  healthBoostAmount: 20
+  maxBoostedHealth: 200
 --- !u!1 &2012002969
 GameObject:
   m_ObjectHideFlags: 0

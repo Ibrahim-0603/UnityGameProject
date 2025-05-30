@@ -8,7 +8,7 @@ public class DifficultySelector : MonoBehaviour
         DifficultyManager.Instance.CurrentDifficulty = DifficultyManager.DifficultyLevel.Easy;
         if (SceneManager.GetActiveScene().name != "GameScene")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("InfoScene");
         }
 
     }
@@ -17,7 +17,7 @@ public class DifficultySelector : MonoBehaviour
         DifficultyManager.Instance.CurrentDifficulty = DifficultyManager.DifficultyLevel.Medium;
         if (SceneManager.GetActiveScene().name != "GameScene")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("InfoScene");
         }
 
     }
@@ -26,7 +26,7 @@ public class DifficultySelector : MonoBehaviour
         DifficultyManager.Instance.CurrentDifficulty = DifficultyManager.DifficultyLevel.Hard;
         if (SceneManager.GetActiveScene().name != "GameScene")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("InfoScene");
         }
     }
     public void SetInsane()
@@ -34,7 +34,7 @@ public class DifficultySelector : MonoBehaviour
         DifficultyManager.Instance.CurrentDifficulty = DifficultyManager.DifficultyLevel.Insane;
         if (SceneManager.GetActiveScene().name != "GameScene")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("InfoScene");
         }
     }
     public void SetEndless()
@@ -42,7 +42,7 @@ public class DifficultySelector : MonoBehaviour
         DifficultyManager.Instance.CurrentDifficulty = DifficultyManager.DifficultyLevel.Endless;
         if (SceneManager.GetActiveScene().name != "GameScene")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("InfoScene");
         }
     }
     public void Back()
