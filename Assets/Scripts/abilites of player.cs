@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(GameEntity))]
-public class abilitiesofplayer : MonoBehaviour
+public class AbilitiesOfPlayer : MonoBehaviour  // Changed to PascalCase
 {
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 15f;
@@ -31,48 +31,47 @@ public class abilitiesofplayer : MonoBehaviour
     {
         gameEntity = GetComponent<GameEntity>();
 
-        if (gameEntity != null)
-        {
-            originalSpeed = gameEntity.moveSpeed;
-        }
-        else
+        if (gameEntity == null)
         {
             Debug.LogError("GameEntity component missing!");
+            return;
         }
 
+        originalSpeed = gameEntity.moveSpeed;
         InitializeAbilityBar();
     }
 
     void InitializeAbilityBar()
     {
-        if (abilityBar != null)
-        {
-            // Unparent the ability bar and start at random position
-            abilityBar.transform.SetParent(null);
-            SetNewRandomPosition();
-        }
-        else
+        if (abilityBar == null)
         {
             Debug.LogError("Ability Bar not assigned!");
+            return;
         }
+
+        // Unparent and set initial random position
+        abilityBar.transform.SetParent(null);
+        SetNewRandomPosition();
     }
 
     void Update()
     {
-        HandleAbilityBarMovement();
+        if (abilityBar != null)
+        {
+            HandleAbilityBarMovement();
+        }
     }
 
     void HandleAbilityBarMovement()
     {
-        if (abilityBar == null) return;
-
-        // Move in world space, not relative to player
-        abilityBar.transform.position = Vector3.Lerp(
+        // Move ability bar smoothly
+        abilityBar.transform.position = Vector3.MoveTowards(
             abilityBar.transform.position,
             targetPosition,
             moveSpeed * Time.deltaTime
         );
 
+        // Update position at intervals
         timer += Time.deltaTime;
         if (timer >= moveInterval)
         {
@@ -83,38 +82,39 @@ public class abilitiesofplayer : MonoBehaviour
 
     void SetNewRandomPosition()
     {
-        // Stay within map boundaries
+        // Calculate new position within bounds
+        Vector3 currentPos = abilityBar.transform.position;
+
         float randomX = Mathf.Clamp(
-            abilityBar.transform.position.x + Random.Range(-moveRange.x, moveRange.x),
+            currentPos.x + Random.Range(-moveRange.x, moveRange.x),
             mapMinBounds.x,
             mapMaxBounds.x
         );
 
         float randomY = Mathf.Clamp(
-            abilityBar.transform.position.y + Random.Range(-moveRange.y, moveRange.y),
+            currentPos.y + Random.Range(-moveRange.y, moveRange.y),
             mapMinBounds.y,
             mapMaxBounds.y
         );
 
-        targetPosition = new Vector3(randomX, randomY, 0);
+        targetPosition = new Vector3(randomX, randomY, currentPos.z);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PowerUpBox"))
+        if (!other.CompareTag("PowerUpBox")) return;
+
+        Destroy(other.gameObject);
+
+        if (isDashing) return;
+
+        if (Random.Range(0, 2) == 0)
         {
-            Destroy(other.gameObject);
-
-            if (isDashing) return;
-
-            if (Random.Range(0, 2) == 0)
-            {
-                ApplyHealthBoost();
-            }
-            else
-            {
-                StartCoroutine(Dash());
-            }
+            ApplyHealthBoost();
+        }
+        else
+        {
+            StartCoroutine(Dash());
         }
     }
 
@@ -122,15 +122,18 @@ public class abilitiesofplayer : MonoBehaviour
     {
         isDashing = true;
         gameEntity.moveSpeed = dashSpeed;
+
         yield return new WaitForSeconds(dashDuration);
+
         gameEntity.moveSpeed = originalSpeed;
         isDashing = false;
     }
 
     void ApplyHealthBoost()
     {
-        gameEntity.currentHealth = Mathf.Min(
+        gameEntity.currentHealth = Mathf.Clamp(
             gameEntity.currentHealth + healthBoost,
+            0,
             gameEntity.maxHealth
         );
     }
