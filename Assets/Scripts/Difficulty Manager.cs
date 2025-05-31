@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DifficultyManager: MonoBehaviour
 {
-    public static DifficultyManager Instance;
+    public static DifficultyManager Instance; 
     public enum DifficultyLevel { Easy, Medium, Hard, Insane, Endless }
     public DifficultyLevel CurrentDifficulty;
 

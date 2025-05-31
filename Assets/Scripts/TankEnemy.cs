@@ -17,9 +17,6 @@ public class TankEnemy : Enemy
 
     public override void Move(Vector2 direction)
     {
-        // Optional: add slow march or stomp animation later
         base.Move(direction); // standard pathing for now
     }
-
-    // Optional: Override Attack if needed
 }

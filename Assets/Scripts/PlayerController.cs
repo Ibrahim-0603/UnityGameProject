@@ -32,6 +32,7 @@ public class PlayerController : GameEntity , IDamagable
 
         Vector2 direction = new Vector2(moveX, moveY).normalized;
         Move(direction);
+
         if(Input.GetKeyDown(KeyCode.Space) && Time.time >= lastFireTime + laserCooldown)
         {
             FireLaser();
@@ -40,8 +41,8 @@ public class PlayerController : GameEntity , IDamagable
     }
     public override void TakeDamage(int damage)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.takeDamage);
         base.TakeDamage(damage);
-
         // Update the health bar if it exists
         if (healthBar != null)
         {
@@ -64,6 +65,8 @@ public class PlayerController : GameEntity , IDamagable
         base.die(); // Call the base class die method
         PlayerPrefs.SetInt("FinalScore", GameManager.instance.enemiesDefeated);
         PlayerPrefs.Save();
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.loseSound);
         SceneManager.LoadScene("GameOverScene"); // Load the Game Over scene
     }
     

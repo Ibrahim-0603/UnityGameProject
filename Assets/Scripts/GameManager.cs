@@ -17,10 +17,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameMusic);
         WinCondtionDifficulty(); // Set the win condition based on difficulty
     }
     public void EnemiesDefeated()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeath);
         pointManager.UpdateScore(1); // Update score when an enemy is defeated
         enemiesDefeated++;
         Debug.Log("Enemies defeated: " + enemiesDefeated);
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     }
     public void WinGame()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.winSound);
         Debug.Log("You win! All enemies defeated.");
         SceneManager.LoadScene("WinScene"); // Load the win scene
     }

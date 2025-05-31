@@ -17,9 +17,7 @@ public class FastEnemy : Enemy
 
     public override void Move(Vector2 direction)
     {
-        // Optional: add more erratic movement logic later
         base.Move(direction); // uses standard movement for now
     }
 
-    // Optional: Override Attack if needed
 }

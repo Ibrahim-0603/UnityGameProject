@@ -14,6 +14,7 @@ public class Meteor : MonoBehaviour
             }
         }
     }
+
     public float movespeed = 10f; // Speed of the meteor's movement
     void Update()
     {

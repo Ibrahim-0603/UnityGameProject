@@ -7,7 +7,7 @@ public class CollectibleSpawner : MonoBehaviour
     public GameObject DamageBoostPrefab; // Prefab for the damage boost collectible
 
     public float spawnInterval = 4f; // Time interval between spawns
-    public float spawnRangeX = 100f; // Range for random Y position
+    public float spawnRangeX = 100f; // Range for random x position
     public float spawnY = 50f; // Fixed X position for spawning
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,9 +67,5 @@ public class CollectibleSpawner : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

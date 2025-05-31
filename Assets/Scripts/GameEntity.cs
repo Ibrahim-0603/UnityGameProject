@@ -51,6 +51,7 @@ public class GameEntity : MonoBehaviour
     }
     public virtual void FireLaser()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.laserShot);
         GameObject laser = Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
     }
 }
