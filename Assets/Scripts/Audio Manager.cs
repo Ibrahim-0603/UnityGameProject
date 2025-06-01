@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     public void PlaySFX(AudioClip clip)
     {

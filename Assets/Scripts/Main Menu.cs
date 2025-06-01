@@ -12,6 +12,11 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonPress);
         SceneManager.LoadScene("DifficultyScene");
     }
+    public void Settings()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonPress);
+        SceneManager.LoadScene("Settings");
+    }
     public void Quitgame()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonPress);

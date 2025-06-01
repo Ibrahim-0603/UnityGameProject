@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     }
     public void WinGame()
     {
+        AudioManager.Instance.StopMusic();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.winSound);
         Debug.Log("You win! All enemies defeated.");
         SceneManager.LoadScene("WinScene"); // Load the win scene
