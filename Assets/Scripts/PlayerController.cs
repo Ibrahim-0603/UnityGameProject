@@ -107,12 +107,12 @@ public class PlayerController : GameEntity , IDamagable
             StartCoroutine(DamageBoostCoroutine(damageMultiplier,boostDuration));
         }
     }
-    private IEnumerator DamageBoostCoroutine(float damgageMultiplier, float boostDuration)
+    private IEnumerator DamageBoostCoroutine(float damageMultiplier, float boostDuration)
     {
         isDamageBoosted = true;
-        laserPrefab.GetComponent<Laser>().damage *= (int)damgageMultiplier; // Increase laser damage
+        laserPrefab.GetComponent<Laser>().damage *= (int)damageMultiplier; // Increase laser damage
         yield return new WaitForSeconds(boostDuration); // Wait for the duration
-        laserPrefab.GetComponent<Laser>().damage /= (int)damgageMultiplier; // Reset laser damage
+        laserPrefab.GetComponent<Laser>().damage /= (int)damageMultiplier; // Reset laser damage
         isDamageBoosted = false; // Reset the damage boost flag
     }
 }

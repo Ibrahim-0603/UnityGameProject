@@ -4,6 +4,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    public AudioMixer audioMixer;
+
     public AudioSource sfxSource;
     public AudioSource musicSource;
 
@@ -29,6 +31,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        ApplySavedAudioSettings();
+    }
 
     public void PlaySFX(AudioClip clip)
     {
@@ -49,5 +55,18 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musicSource.Stop();
+    }
+
+    public void ApplySavedAudioSettings()
+    {
+        float volume = PlayerPrefs.GetFloat("Volume", 0.5f);
+        volume = Mathf.Clamp(volume, 0.0001f, 1f); // Avoid Log10(0)
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20f);
+
+        bool sfxEnabled = PlayerPrefs.GetInt("SFX Toggle", 1) == 1;
+        audioMixer.SetFloat("SFX", sfxEnabled ? 0f : -80f);
+
+        bool musicEnabled = PlayerPrefs.GetInt("Music Toggle", 1) == 1;
+        audioMixer.SetFloat("Music", musicEnabled ? 0f : -80f);
     }
 }
