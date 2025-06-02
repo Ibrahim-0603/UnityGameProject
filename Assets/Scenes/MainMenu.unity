@@ -1199,6 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd6b0ed017e0d147919fad5aec85dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: d1d8f129ff3d3eb4ba128d1c5b0d4f13, type: 2}
   sfxSource: {fileID: 1550859022}
   musicSource: {fileID: 1550859021}
   laserShot: {fileID: 8300000, guid: f60066e5546c3224e9da6eefd80956c5, type: 3}
